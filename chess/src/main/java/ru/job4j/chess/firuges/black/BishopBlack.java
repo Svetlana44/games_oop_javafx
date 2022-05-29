@@ -6,6 +6,8 @@ import ru.job4j.chess.firuges.Figure;
 
 import java.util.Objects;
 
+import static java.lang.Math.abs;
+
 public class BishopBlack implements Figure {
     private final Cell position;
 
@@ -25,8 +27,7 @@ public class BishopBlack implements Figure {
                     String.format("Could not move by diagonal from %s to %s", position, dest)
             );
         }
-        int size = Math.max(Math.abs(position().getX()
-                - dest.getX()), Math.abs(position().getY() - dest.getY()));
+        int size = Math.abs(position().getX() - dest.getX());
         Cell[] steps = new Cell[size];
         int deltaX = position.getX() > dest.getX() ? -1 : 1;
         int deltaY = position.getY() > dest.getY() ? -1 : 1;
@@ -41,7 +42,7 @@ public class BishopBlack implements Figure {
     }
 
     public boolean isDiagonal(Cell source, Cell dest) {
-        return Math.abs(source.getX() - dest.getX()) == Math.abs(source.getY() - dest.getY());
+        return abs(source.getX() - dest.getX()) == abs(source.getY() - dest.getY());
     }
 
     @Override
